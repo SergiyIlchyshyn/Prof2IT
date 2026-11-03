@@ -28,3 +28,14 @@ function openTab() {
 }
 
 openTab();
+
+// відкриття модалки
+document.getElementById("addBookBtn").addEventListener("click", function () {
+    const modal = document.getElementById("bookModal");
+    modal.style.display = "flex";
+});
+// закриття модалки
+document.getElementById("closeModal").addEventListener("click", function () {
+    const modal = document.getElementById("bookModal");
+    modal.style.display = "none";
+});

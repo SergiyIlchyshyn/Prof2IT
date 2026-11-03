@@ -17,6 +17,7 @@
         <!-- Книги -->
         <div id="booksTab" class="tab-content">
             <h2>Каталог книг</h2>
+            <button class="add-btn" id="addBookBtn">+ Додати нову книгу</button>
             <table>
                 <thead>
                     <tr>
@@ -155,6 +156,74 @@
             </table>
         </div>
 
+        <!-- Модальне вікно -->
+        <div id="bookModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" id="closeModal">&times;</span>
+                <h3>Додати нову книгу</h3>
+                <form id="addBookForm">
+                    <div class="form-group">
+                        <label for="bookTitle">Назва книги:</label>
+                        <input
+                            type="text"
+                            id="bookTitle"
+                            name="bookTitle"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="bookAuthor">Автор:</label>
+                        <input
+                            type="text"
+                            id="bookAuthor"
+                            name="bookAuthor"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="bookYear">Рік видання:</label>
+                        <input
+                            type="number"
+                            id="bookYear"
+                            name="bookYear"
+                            required
+                        />
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <label for="bookGenre">Жанр:</label>
+                        <input
+                            type="text"
+                            id="bookGenre"
+                            name="bookGenre"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="bookPages">Кількість сторінок:</label>
+                        <input
+                            type="number"
+                            id="bookPages"
+                            name="bookPages"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="bookStock">У наявності (кількість):</label>
+                        <input
+                            type="number"
+                            id="bookStock"
+                            name="bookStock"
+                            required
+                        />
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        Додати книгу
+                    </button>
+                </form>
+            </div>
+        </div>
         <script src="script.js"></script>
     </body>
 </html>
