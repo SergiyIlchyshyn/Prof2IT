@@ -1,14 +1,41 @@
-function openTab(e, tabId) {
-    const tabContents = document.getElementsByClassName("tab-content");
-    for (let i = 0; i < tabContents.length; i++) {
-        tabContents[i].classList.remove("active");
-    }
+function openTab() {
+    const tabButtons = document.querySelectorAll(".tab-button");
+    // console.log(tabButtons);
 
-    const tabButtons = document.getElementsByClassName("tab-button");
-    for (let i = 0; i < tabButtons.length; i++) {
-        tabButtons[i].classList.remove("active");
-    }
+    tabButtons.forEach(function (button) {
+    
+        button.addEventListener("click", function () {
+            let tabName = this.dataset.tab;
+            console.log(tabName);
+            let tabContent = document.getElementById(tabName);
 
-    document.getElementById(tabId).classList.add("active");
-    e.currentTarget.classList.add("active");
+            let allTabButtons = document.querySelectorAll(".tab-button");
+            let allTabContent = document.querySelectorAll(".tab-content");
+
+            allTabContent.forEach(content => {
+                content.style.display = "none";
+            });
+
+            allTabButtons.forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+            tabContent.style.display = "block";
+            this.classList.add("active");
+        });
+    });
+    document.querySelector(".tab-button").click();
 }
+
+openTab();
+
+// відкриття модалки
+document.getElementById("addBookBtn").addEventListener("click", function () {
+    const modal = document.getElementById("bookModal");
+    modal.style.display = "flex";
+});
+// закриття модалки
+document.getElementById("closeModal").addEventListener("click", function () {
+    const modal = document.getElementById("bookModal");
+    modal.style.display = "none";
+});
