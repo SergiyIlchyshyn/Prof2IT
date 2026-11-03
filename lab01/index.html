@@ -9,22 +9,13 @@
     <body>
         <h1>Електронна Бібліотека</h1>
         <div class="tabs">
-            <button
-                class="tab-button active"
-                onclick="openTab(event, 'booksTab')"
-            >
-                Книги
-            </button>
-            <button class="tab-button" onclick="openTab(event, 'readersTab')">
-                Читачі
-            </button>
-            <button class="tab-button" onclick="openTab(event, 'loansTab')">
-                Видача книг
-            </button>
+            <button class="tab-button active" data-tab="booksTab">Книги</button>
+            <button class="tab-button" data-tab="readersTab">Читачі</button>
+            <button class="tab-button" data-tab="loansTab">Видача книг</button>
         </div>
 
         <!-- Книги -->
-        <div id="booksTab" class="tab-content active">
+        <div id="booksTab" class="tab-content">
             <h2>Каталог книг</h2>
             <table>
                 <thead>
