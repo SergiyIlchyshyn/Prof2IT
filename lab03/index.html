@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="uk">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lab 03</title>
+        <link rel="stylesheet" href="../style.css" />
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <h1>Електронна Бібліотека</h1>
+        <div class="tabs">
+            <button class="tab-button active" data-tab="booksTab">Книги</button>
+            <button class="tab-button" data-tab="readersTab">Читачі</button>
+            <button class="tab-button" data-tab="loansTab">Видача книг</button>
+        </div>
+
+        <!-- Книги -->
+        <div id="booksTab" class="tab-content">
+            <h2>Каталог книг</h2>
+            <button class="add-btn" id="addBookBtn" data-modal="bookModal">
+                + Додати нову книгу
+            </button>
+            <table id="booksTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Назва</th>
+                        <th>Автор</th>
+                        <th>Рік видання</th>
+                        <th>Жанр</th>
+                        <th>Кількість сторінок</th>
+                        <th>У наявності</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>«Тіні забутих предків»</td>
+                        <td>Михайло Коцюбинський</td>
+                        <td>1911</td>
+                        <td>Повість / Драматизм</td>
+                        <td>160</td>
+                        <td>Так (3 шт.)</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>«Захар Беркут»</td>
+                        <td>Іван Франко</td>
+                        <td>1883</td>
+                        <td>Історична повість</td>
+                        <td>224</td>
+                        <td>Так (2 шт.)</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>«Кайдашева сім'я»</td>
+                        <td>Іван Нечуй-Левицький</td>
+                        <td>1879</td>
+                        <td>Соціально-побутова повість</td>
+                        <td>320</td>
+                        <td>Ні (розібрано)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Читачі -->
+        <div id="readersTab" class="tab-content">
+            <h2>Список читачів</h2>
+            <button class="add-btn" id="addReaderBtn" data-modal="readerModal">
+                + Додати нового читача
+            </button>
+            <table id="readersTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ПІБ читача</th>
+                        <th>Номер квитка</th>
+                        <th>Дата народження</th>
+                        <th>Телефон</th>
+                        <th>Email</th>
+                        <th>Активні книги</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Шевченко Катерина Василівна</td>
+                        <td>LIB-2026-001</td>
+                        <td>15.05.1998</td>
+                        <td>+380 (67) 111-22-33</td>
+                        <td>k.shevchenko@gmail.com</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Франко Максим Петрович</td>
+                        <td>LIB-2026-002</td>
+                        <td>22.11.2001</td>
+                        <td>+380 (50) 444-55-66</td>
+                        <td>m.franko@ukr.net</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Костенко Оксана Іванівна</td>
+                        <td>LIB-2026-003</td>
+                        <td>03.09.1995</td>
+                        <td>+380 (93) 777-88-99</td>
+                        <td>oksana.k@gmail.com</td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Видача книг -->
+        <div id="loansTab" class="tab-content">
+            <h2>Журнал видачі книг</h2>
+            <button class="add-btn" id="addLoanBtn" data-modal="loanModal">
+                + Додати видачу
+            </button>
+            <table id="loansTable">
+                <thead>
+                    <tr>
+                        <th>ID видачі</th>
+                        <th>Назва книги</th>
+                        <th>ПІБ читача</th>
+                        <th>Дата видачі</th>
+                        <th>План. дата повернення</th>
+                        <th>Факт. дата повернення</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>101</td>
+                        <td>«Тіні забутих предків»</td>
+                        <td>Шевченко Катерина Василівна</td>
+                        <td>10.03.2026</td>
+                        <td>24.03.2026</td>
+                        <td>—</td>
+                        <td>На руках</td>
+                    </tr>
+                    <tr>
+                        <td>102</td>
+                        <td>«Захар Беркут»</td>
+                        <td>Франко Максим Петрович</td>
+                        <td>01.03.2026</td>
+                        <td>15.03.2026</td>
+                        <td>12.03.2026</td>
+                        <td>Повернено</td>
+                    </tr>
+                    <tr>
+                        <td>103</td>
+                        <td>«Кайдашева сім'я»</td>
+                        <td>Франко Максим Петрович</td>
+                        <td>05.03.2026</td>
+                        <td>19.03.2026</td>
+                        <td>—</td>
+                        <td>Протерміновано</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Модальне вікно для книг -->
+        <div id="bookModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" data-modal="bookModal">&times;</span>
+                <h3>Додати нову книгу</h3>
+                <form id="addBookForm">
+                    <div class="form-group">
+                        <label>ID:</label>
+                        <input
+                            type="number"
+                            id="bookId"
+                            readonly
+                            class="readonly-input"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="bookTitle">Назва книги:</label>
+                        <input
+                            type="text"
+                            id="bookTitle"
+                            name="bookTitle"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="bookAuthor">Автор:</label>
+                        <input
+                            type="text"
+                            id="bookAuthor"
+                            name="bookAuthor"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="bookYear">Рік видання:</label>
+                        <input
+                            type="number"
+                            id="bookYear"
+                            name="bookYear"
+                            min="1000"
+                            max="2026"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="bookGenre">Жанр:</label>
+                        <input
+                            type="text"
+                            id="bookGenre"
+                            name="bookGenre"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="bookPages">Кількість сторінок:</label>
+                        <input
+                            type="number"
+                            id="bookPages"
+                            name="bookPages"
+                            min="1"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="bookStock">У наявності (кількість):</label>
+                        <input
+                            type="number"
+                            id="bookStock"
+                            name="bookStock"
+                            min="0"
+                            required
+                        />
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        Додати книгу
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!-- Модальне вікно для читачів -->
+        <div id="readerModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" data-modal="readerModal">&times;</span>
+                <h3>Додати нового читача</h3>
+                <form id="addReaderForm">
+                    <div class="form-group">
+                        <label>ID:</label
+                        ><input
+                            type="number"
+                            id="readerId"
+                            readonly
+                            class="readonly-input"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label>ПІБ читача:</label
+                        ><input type="text" id="readerName" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Номер квитка:</label
+                        ><input
+                            type="text"
+                            id="readerCard"
+                            placeholder="LIB-2026-00X"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label>Дата народження:</label
+                        ><input type="date" id="readerBirthday" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Телефон:</label
+                        ><input
+                            type="tel"
+                            id="readerPhone"
+                            placeholder="+380 (XX) XXX-XX-XX"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label>Email:</label
+                        ><input type="email" id="readerEmail" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Активні книги:</label
+                        ><input
+                            type="number"
+                            id="readerActive"
+                            value="0"
+                            min="0"
+                            required
+                        />
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        Зберегти читача
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!-- Модальне вікно для видачі книг -->
+        <div id="loanModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" data-modal="loanModal">&times;</span>
+                <h3>Додати запис про видачу</h3>
+                <form id="addLoanForm">
+                    <div class="form-group">
+                        <label>ID видачі:</label
+                        ><input
+                            type="number"
+                            id="loanId"
+                            readonly
+                            class="readonly-input"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label>Назва книги:</label
+                        ><input type="text" id="loanBook" required />
+                    </div>
+                    <div class="form-group">
+                        <label>ПІБ читача:</label
+                        ><input type="text" id="loanReader" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Дата видачі:</label
+                        ><input type="date" id="loanDate" required />
+                    </div>
+                    <div class="form-group">
+                        <label>План. дата повернення:</label
+                        ><input type="date" id="loanPlanDate" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Факт. дата повернення:</label
+                        ><input type="date" id="loanFactDate" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Статус:</label>
+                        <select id="loanStatus" required>
+                            <option value="На руках">На руках</option>
+                            <option value="Повернено">Повернено</option>
+                            <option value="Протерміновано">
+                                Протерміновано
+                            </option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        Зберегти запис
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-link">
+            <a href="../">← На головну</a>
+        </div>
+    </body>
+</html>
