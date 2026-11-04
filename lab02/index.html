@@ -18,7 +18,9 @@
         <!-- Книги -->
         <div id="booksTab" class="tab-content">
             <h2>Каталог книг</h2>
-            <button class="add-btn" id="addBookBtn">+ Додати нову книгу</button>
+            <button class="add-btn" id="addBookBtn" data-modal="bookModal">
+                + Додати нову книгу
+            </button>
             <table id="booksTable">
                 <thead>
                     <tr>
@@ -66,7 +68,7 @@
         <!-- Читачі -->
         <div id="readersTab" class="tab-content">
             <h2>Список читачів</h2>
-            <button class="add-btn" id="addReaderBtn">
+            <button class="add-btn" id="addReaderBtn" data-modal="readerModal">
                 + Додати нового читача
             </button>
             <table id="readersTable">
@@ -116,7 +118,9 @@
         <!-- Видача книг -->
         <div id="loansTab" class="tab-content">
             <h2>Журнал видачі книг</h2>
-            <button class="add-btn" id="addLoanBtn">+ Додати видачу</button>
+            <button class="add-btn" id="addLoanBtn" data-modal="loanModal">
+                + Додати видачу
+            </button>
             <table id="loansTable">
                 <thead>
                     <tr>
@@ -164,7 +168,7 @@
         <!-- Модальне вікно для книг -->
         <div id="bookModal" class="modal">
             <div class="modal-content">
-                <span class="close-btn" id="closeModal">&times;</span>
+                <span class="close-btn" data-modal="bookModal">&times;</span>
                 <h3>Додати нову книгу</h3>
                 <form id="addBookForm">
                     <div class="form-group">
@@ -243,7 +247,7 @@
         <!-- Модальне вікно для читачів -->
         <div id="readerModal" class="modal">
             <div class="modal-content">
-                <span class="close-btn">&times;</span>
+                <span class="close-btn" data-modal="readerModal">&times;</span>
                 <h3>Додати нового читача</h3>
                 <form id="addReaderForm">
                     <div class="form-group">
@@ -283,7 +287,7 @@
         <!-- Модальне вікно для видачі книг -->
         <div id="loanModal" class="modal">
             <div class="modal-content">
-                <span class="close-btn">&times;</span>
+                <span class="close-btn" data-modal="loanModal">&times;</span>
                 <h3>Додати запис про видачу</h3>
                 <form id="addLoanForm">
                     <div class="form-group">

@@ -1,13 +1,10 @@
 // Перемикання між табами
 function openTab() {
     const tabButtons = document.querySelectorAll(".tab-button");
-    // console.log(tabButtons);
 
     tabButtons.forEach(function (button) {
-    
         button.addEventListener("click", function () {
             let tabName = this.dataset.tab;
-            // console.log(tabName);
             let tabContent = document.getElementById(tabName);
 
             let allTabButtons = document.querySelectorAll(".tab-button");
@@ -21,11 +18,16 @@ function openTab() {
                 btn.classList.remove("active");
             });
 
-            tabContent.style.display = "block";
+            if (tabContent) {
+                tabContent.style.display = "block";
+            }
             this.classList.add("active");
         });
     });
-    document.querySelector(".tab-button").click();
+    const firstTab = document.querySelector(".tab-button");
+    if (firstTab) {
+        firstTab.click();
+    }
 }
 openTab();
 
@@ -33,22 +35,39 @@ openTab();
 function openModal(modalId) {
     document.getElementById(modalId).style.display = "flex";
 }
-document.getElementById("addBookBtn").addEventListener("click", function () {
-    openModal("bookModal");
+document.querySelectorAll(".add-btn").forEach(button => {
+    button.addEventListener("click", function () {
+        const modalId = this.dataset.modal; 
+        if (modalId === "bookModal") {
+            const tableRows = document.querySelectorAll("#booksTable tbody tr");
+            document.getElementById("bookId").value = tableRows.length + 1;
+        }
+        openModal(modalId);
+    });
 });
-document.getElementById("addReaderBtn").addEventListener("click", function () {
-    openModal("readerModal");
-});
-document.getElementById("addLoanBtn").addEventListener("click", function () {
-    openModal("loanModal");
-});
-
-// Закриття модалки
+// Закриття модалок
 function closeModal(modalId) {
     document.getElementById(modalId).style.display = "none";
 }
-document.getElementById("closeModal").addEventListener("click", function () {
-    closeModal("bookModal");
+const closeButtons = document.querySelectorAll(".close-btn");
+closeButtons.forEach(btn => {
+    btn.addEventListener("click", function () {
+        const modalId = this.dataset.modal;
+        closeModal(modalId);
+    });
+});
+window.addEventListener("click", function (event) {
+    if (event.target.classList.contains("modal")) {
+        event.target.style.display = "none";
+    }
+});
+window.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        const modals = document.querySelectorAll(".modal");
+        modals.forEach(modal => {
+            modal.style.display = "none";
+        });
+    }
 });
 // +++++++++++++++
 // Додавання книги
