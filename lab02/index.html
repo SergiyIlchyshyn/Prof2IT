@@ -18,7 +18,7 @@
         <div id="booksTab" class="tab-content">
             <h2>Каталог книг</h2>
             <button class="add-btn" id="addBookBtn">+ Додати нову книгу</button>
-            <table>
+            <table id="booksTable">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -163,6 +163,18 @@
                 <h3>Додати нову книгу</h3>
                 <form id="addBookForm">
                     <div class="form-group">
+                        <label>ID:</label>
+                        <input
+                            type="number"
+                            id="bookId"
+                            readonly
+                            style="
+                                background-color: #e9ecef;
+                                cursor: not-allowed;
+                            "
+                        />
+                    </div>
+                    <div class="form-group">
                         <label for="bookTitle">Назва книги:</label>
                         <input
                             type="text"
@@ -189,7 +201,6 @@
                             required
                         />
                     </div>
-                    <div class="form-group"></div>
                     <div class="form-group">
                         <label for="bookGenre">Жанр:</label>
                         <input
