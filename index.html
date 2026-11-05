@@ -4,16 +4,40 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Prof2IT</title>
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <h1>Лабораторні роботи</h1>
-        <div>
-            <ul>
-                <li><a href="./lab01/index.html">Лабораторна робота №1</a></li>
-                <li><a href="./lab02/index.html">Лабораторна робота №2</a></li>
-                <li><a href="./lab03/index.html">Лабораторна робота №3</a></li>
-                <li><a href="#">Лабораторна робота №4</a></li>
-            </ul>
+        <div class="main-container">
+            <h1>Лабораторні роботи</h1>
+            <main class="labs-grid">
+                <div class="lab-card">
+                    <span class="lab-badge">Лабораторна №1</span>
+                    <a href="./lab01/index.html" class="lab-link"
+                        >Переглянути роботу</a
+                    >
+                </div>
+
+                <div class="lab-card active">
+                    <span class="lab-badge">Лабораторна №2</span>
+                    <a href="./lab02/index.html" class="lab-link"
+                        >Переглянути роботу</a
+                    >
+                </div>
+
+                <div class="lab-card">
+                    <span class="lab-badge">Лабораторна №3</span>
+                    <a href="./lab03/index.html" class="lab-link"
+                        >Переглянути роботу</a
+                    >
+                </div>
+
+                <div class="lab-card">
+                    <span class="lab-badge">Лабораторна №4</span>
+                    <a href="./lab04/index.html" class="lab-link"
+                        >Переглянути роботу</a
+                    >
+                </div>
+            </main>
         </div>
     </body>
 </html>
