@@ -2,27 +2,22 @@ const DB_NAME = "LibraryDB";
 const DB_VERSION = 1;
 let db = null;
 
+// Канал для миттєвої міжтабової синхронізації змін
 const syncChannel = new BroadcastChannel("library_sync_channel");
 
-const libraryData = {
-    books: [
-        { id: 1, title: "«Тіні забутих предків»", author: "Михайло Коцюбинський", year: "1911", genre: "Повість / Драматизм", pages: "160", stock: "3" },
-        { id: 2, title: "«Захар Беркут»", author: "Іван Франко", year: "1883", genre: "Історична повість", pages: "224", stock: "2" },
-        { id: 3, title: "«Кайдашева сім'я»", author: "Іван Нечуй-Левицький", year: "1879", genre: "Соціально-побутова повість", pages: "320", stock: "0" }
-    ],
-    readers: [
-        { id: 1, name: "Шевченко Катерина Василівна", card: "LIB-2026-001", birthday: "15.05.1998", phone: "+380 (67) 111-22-33", email: "k.shevchenko@gmail.com", active: "1" },
-        { id: 2, name: "Франко Максим Петрович", card: "LIB-2026-002", birthday: "22.11.2001", phone: "+380 (50) 444-55-66", email: "m.franko@ukr.net", active: "2" },
-        { id: 3, name: "Костенко Оксана Іванівна", card: "LIB-2026-003", birthday: "03.09.1995", phone: "+380 (93) 777-88-99", email: "oksana.k@gmail.com", active: "0" }
-    ],
-    loans: [
-        { id: 101, book: "«Тіні забутих предків»", reader: "Шевченко Катерина Василівна", date: "10.03.2026", planDate: "24.03.2026", factDate: "—", status: "На руках" },
-        { id: 102, book: "«Захар Беркут»", reader: "Франко Максим Петрович", date: "01.03.2026", planDate: "15.03.2026", factDate: "12.03.2026", status: "Повернено" },
-        { id: 103, book: "«Кайдашева сім'я»", reader: "Франко Максим Петрович", date: "05.03.2026", planDate: "19.03.2026", factDate: "—", status: "Протерміновано" }
-    ]
-};
-
 export let appData = { books: [], readers: [], loans: [] };
+
+// Завантаження даних з JSON файлу
+async function fetchtData() {
+    try {
+        const response = await fetch("./data.json");
+        if (!response.ok) throw new Error("Не вдалося завантажити data.json");
+        return await response.json();
+    } catch (error) {
+        console.error("Помилка завантаження JSON:", error);
+        return { books: [], readers: [], loans: [] };
+    }
+}
 
 export function initDB() {
     return new Promise((resolve, reject) => {
@@ -47,6 +42,7 @@ export function initDB() {
         };
 
         request.onerror = function (event) {
+            console.error("Помилка відкриття IndexedDB:", event.target.error);
             reject(event.target.error);
         };
     });
@@ -82,22 +78,26 @@ export function deleteFromStore(storeName, id) {
     });
 }
 
+// Завантаження даних із бази або з JSON
 export async function loadAllData() {
     appData.books = await getAllFromStore("books");
     appData.readers = await getAllFromStore("readers");
     appData.loans = await getAllFromStore("loans");
 
     if (appData.books.length === 0 && appData.readers.length === 0 && appData.loans.length === 0) {
+        const libraryData = await fetchtData();
+        
         for (let b of libraryData.books) await putToStore("books", b);
         for (let r of libraryData.readers) await putToStore("readers", r);
         for (let l of libraryData.loans) await putToStore("loans", l);
 
-        appData.books = [...libraryData.books];
-        appData.readers = [...libraryData.readers];
-        appData.loans = [...libraryData.loans];
+        appData.books = libraryData.books;
+        appData.readers = libraryData.readers;
+        appData.loans = libraryData.loans;
     }
 }
 
+// Синхронізація між відкритими вкладками
 export function notifyOtherTabs() {
     syncChannel.postMessage("data_updated");
 }
