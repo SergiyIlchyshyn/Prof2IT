@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Lab 04</title>
         <link rel="stylesheet" href="../style.css" />
-        <script src="script.js" defer></script>
+        <script src="./js/main.js" type="module" defer></script>
     </head>
     <body>
         <h1>Електронна Бібліотека</h1>
@@ -240,14 +240,28 @@
                             class="readonly-input"
                         />
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label>Назва книги:</label
                         ><input type="text" id="loanBook" required />
-                    </div>
+                    </div> -->
                     <div class="form-group">
+                        <label for="loanBookSelect"
+                            >Оберіть книгу (з каталогу):</label
+                        >
+                        <select id="loanBookSelect" required></select>
+                    </div>
+
+                    <!-- <div class="form-group">
                         <label>ПІБ читача:</label
                         ><input type="text" id="loanReader" required />
+                    </div> -->
+                    <div class="form-group">
+                        <label for="loanReaderSelect"
+                            >Оберіть читача (зі списку):</label
+                        >
+                        <select id="loanReaderSelect" required></select>
                     </div>
+
                     <div class="form-group">
                         <label>Дата видачі:</label
                         ><input type="date" id="loanDate" required />
